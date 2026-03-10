@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadership Development Programs | Infopro Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --deep:       #1A0533;
+      --purple:     #6B19FF;
+      --purple-dim: rgba(107,25,255,0.12);
+      --lavender:   #F2EDFF;
+      --text:       #1A0533;
+      --muted:      #6B5E80;
+      --border:     rgba(107,25,255,0.18);
+      --white:      #FFFFFF;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 64px;
+      background: rgba(26,5,51,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo img { height: 32px; display: block; }
+
+    .nav-cta {
+      background: var(--purple);
+      color: var(--white);
+      text-decoration: none;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ─── HERO ────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--deep);
+      padding: 120px clamp(5%, 50vw - 520px, 14%) 80px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 12px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle dot grid texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(107,25,255,0.25) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
+
+    /* glow blob */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -120px; right: 300px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(107,25,255,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+    }
+
+    .hero-label::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--purple);
+      border-radius: 2px;
+    }
+
+    .hero h1 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-weight: 800;
+      font-size: clamp(44px, 6vw, 80px);
+      line-height: 1.0;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 .accent {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--purple);
+    }
+
+    .hero p {
+      font-size: 17px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+
+    /* Hero form card */
+    .hero-form-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-form-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px 22px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    .form-card-header {
+      border-bottom: 1px solid var(--lavender);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .form-card-header h3 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 4px;
+    }
+
+    .form-card-header p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .form-row { margin-bottom: 14px; }
+
+    .form-row label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .form-row input,
+    .form-row select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #E8E0F5;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text);
+      background: #FDFBFF;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-row input:focus,
+    .form-row select:focus { border-color: var(--purple); }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--purple);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .form-submit:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .form-note {
+      font-size: 11px;
+      color: #B0A5C4;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* trust strip inside form card */
+    .form-trust {
+      display: flex;
+      justify-content: space-between;
+      background: var(--purple-dim);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 10px;
+      margin-bottom: 20px;
+    }
+
+    .trust-stat {
+      text-align: center;
+      flex: 1;
+    }
+
+    .trust-stat + .trust-stat {
+      border-left: 1px solid var(--border);
+    }
+
+    .trust-stat-num {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--purple);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .trust-stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ─── BENEFITS ────────────────────────────────── */
+    .benefits {
+      background: var(--white);
+      padding: 100px clamp(5%, 50vw - 520px, 14%);
+    }
+
+    .benefits-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 72px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--purple);
+      margin-bottom: 14px;
+    }
+
+    .benefits-header h2 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--deep);
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .benefits-header p {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--muted);
+      align-self: end;
+    }
+
+    .benefits-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .benefit-item {
+      padding: 40px 32px 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefit-item:not(:last-child) {
+      border-right: 1px solid var(--border);
+      padding-right: 40px;
+    }
+
+    .benefit-item:not(:first-child) {
+      padding-left: 40px;
+    }
+
+    .benefit-num {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--purple-dim);
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -3px;
+    }
+
+    .benefit-item h3 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--deep);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .benefit-item p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .benefit-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      color: var(--purple);
+      background: var(--purple-dim);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 18px;
+    }
+
+    /* ─── SOCIAL PROOF ────────────────────────────── */
+    .proof {
+      background: var(--purple);
+      padding: 80px clamp(5%, 50vw - 520px, 14%);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .proof-left h2 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .proof-left p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 440px;
+    }
+
+    .proof-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .proof-stat {
+      background: rgba(255,255,255,0.06);
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .proof-stat-num {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .proof-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* ─── CTA ─────────────────────────────────────── */
+    .cta-section {
+      background: var(--lavender);
+      padding: 100px clamp(5%, 50vw - 520px, 14%);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .cta-left { }
+
+    .cta-left h2 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      color: var(--deep);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 18px;
+    }
+
+    .cta-left p {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .catalog-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .catalog-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .check-icon {
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check-icon svg { display: block; }
+
+    .cta-form {
+      background: var(--deep);
+      border-radius: 16px;
+      padding: 32px 28px 26px;
+    }
+
+    .cta-form h3 {
+      font-family: 'Libre Franklin', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .cta-form > p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 28px;
+    }
+
+    .cta-form .form-row label { color: rgba(255,255,255,0.45); }
+
+    .cta-form .form-row input,
+    .cta-form .form-row select {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+
+    .cta-form .form-row input::placeholder { color: rgba(255,255,255,0.3); }
+
+    .cta-form .form-row input:focus,
+    .cta-form .form-row select:focus {
+      border-color: var(--purple);
+      background: rgba(107,25,255,0.12);
+    }
+
+    .cta-form .form-row select option { background: #1A0533; color: var(--white); }
+
+    .cta-form .form-note { color: rgba(255,255,255,0.25); }
+
+    /* ─── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--deep);
+      padding: 28px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer img { height: 24px; opacity: 0.7; }
+
+    footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    footer a {
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; max-width: 600px; }
+      .hero-form-wrap { max-width: 100%; }
+      .benefits-header { grid-template-columns: 1fr; }
+      .proof { grid-template-columns: 1fr; }
+      .cta-section { grid-template-columns: 1fr; }
+      .cta-form { max-width: 100%; }
+    }
+
+    @media (max-width: 720px) {
+      .benefits-list { grid-template-columns: 1fr; }
+      .benefit-item { border-right: none !important; padding: 36px 0 !important; }
+      .proof-stats { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 5%; }
+      .hero, .benefits, .proof, .cta-section { padding-left: 5%; padding-right: 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img
+      src="https://www.infoprolearning.com/wp-content/themes/ipl/assets/images-new/2024/logo-new.svg"
+      alt="Infopro Learning"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+    />
+    <span style="display:none; color:#fff; font-family:'Libre Franklin',sans-serif; font-weight:700; font-size:16px;">Infopro Learning</span>
+  </a>
+  <a class="nav-cta" href="#get-catalog">Download Catalog</a>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-label">Leadership Development</div>
+    <h1>
+      Leaders Built<br />
+      for Your<br />
+      <span class="accent">Business.</span>
+    </h1>
+    <p>Off-the-shelf training wasn't designed for your industry, your culture, or your challenges. We build fully custom leadership programs that create measurable, lasting impact — at a cost that scales with you.</p>
+  </div>
+
+  <div class="hero-form-wrap">
+    <div class="hero-form-card">
+      <div class="form-card-header">
+        <h3>Get the 2026 Catalog</h3>
+        <p>Full program details, formats &amp; pricing — instant download.</p>
+      </div>
+      <div class="form-trust">
+        <div class="trust-stat">
+          <div class="trust-stat-num">600+</div>
+          <div class="trust-stat-label">Enterprise<br>Clients</div>
+        </div>
+        <div class="trust-stat">
+          <div class="trust-stat-num">1M+</div>
+          <div class="trust-stat-label">Leaders<br>Trained</div>
+        </div>
+        <div class="trust-stat">
+          <div class="trust-stat-num">96%</div>
+          <div class="trust-stat-label">Learner<br>Satisfaction</div>
+        </div>
+      </div>
+      <form id="hero-form" onsubmit="submitForm(event)">
+        <div class="form-row">
+          <label>Full Name</label>
+          <input type="text" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-row">
+          <label>Work Email</label>
+          <input type="email" placeholder="jane@company.com" required />
+        </div>
+        <div class="form-row">
+          <label>Company</label>
+          <input type="text" placeholder="Acme Corp" required />
+        </div>
+        <div class="form-row">
+          <label>Your Role</label>
+          <select required>
+            <option value="" disabled selected>Select role</option>
+            <option>Chief Learning Officer</option>
+            <option>VP / Director of L&D</option>
+            <option>HR Business Partner</option>
+            <option>Talent Development Manager</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit">Download Free Catalog →</button>
+        <p class="form-note">No spam. Unsubscribe any time.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFITS ─────────────────────────────────────── -->
+<section class="benefits">
+  <div class="benefits-header">
+    <div>
+      <div class="section-tag">Why it matters</div>
+      <h2>The difference custom makes</h2>
+    </div>
+    <p>Generic programs produce generic results. Organizations that invest in custom leadership development see faster manager readiness, stronger retention, and measurable business outcomes — not just course completions.</p>
+  </div>
+
+  <div class="benefits-list">
+    <div class="benefit-item">
+      <div class="benefit-num">01</div>
+      <h3>Built Around Your Business</h3>
+      <p>Every program starts with your leadership competency model, your culture, and your strategic goals. We don't repurpose shelf content — we design from the ground up around what your organization actually needs leaders to do.</p>
+      <span class="benefit-tag">Fully Custom</span>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-num">02</div>
+      <h3>Priced for Scale, Not Per Seat</h3>
+      <p>Custom doesn't have to mean expensive. Our delivery model is built for organizations training dozens to thousands of leaders. As your program scales, your per-learner cost goes down — not up — keeping L&D budgets intact.</p>
+      <span class="benefit-tag">Cost-Effective</span>
+    </div>
+
+    <div class="benefit-item">
+      <div class="benefit-num">03</div>
+      <h3>Delivery That Meets Your Leaders</h3>
+      <p>Live in-person, virtual instructor-led, on-demand, or blended — every modality is designed for engagement and application, not just completion. Leaders leave with skills they can use the next day, not slides to forget.</p>
+      <span class="benefit-tag">Flexible Delivery</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOCIAL PROOF ──────────────────────────────────── -->
+<section class="proof">
+  <div class="proof-left">
+    <h2>Trusted by enterprise L&amp;D teams across every major industry</h2>
+    <p>From Fortune 500 financial services firms to global healthcare networks, Infopro Learning has helped organizations build leadership capability at every level — frontline manager to C-suite.</p>
+  </div>
+
+  <div class="proof-stats">
+    <div class="proof-stat">
+      <div class="proof-stat-num">600+</div>
+      <div class="proof-stat-label">Enterprise<br />Clients</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">1M+</div>
+      <div class="proof-stat-label">Leaders<br />Trained</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">96%</div>
+      <div class="proof-stat-label">Learner<br />Satisfaction</div>
+    </div>
+    <div class="proof-stat">
+      <div class="proof-stat-num">25+</div>
+      <div class="proof-stat-label">Industries<br />Served</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────── -->
+<section class="cta-section" id="get-catalog">
+  <div class="cta-left">
+    <div class="section-tag">Free Download</div>
+    <h2>Everything you need to make the case internally</h2>
+    <p>The 2026 Leadership Program Catalog covers our full range of programs, delivery formats, customization options, and how we measure ROI. Share it with your CHRO, your team, or procurement.</p>
+    <ul class="catalog-list">
+      <li>
+        <span class="check-icon">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Full program descriptions for all leadership levels
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Delivery formats and customization options
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Sample learning journeys and timelines
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Measurement and ROI frameworks
+      </li>
+      <li>
+        <span class="check-icon">
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4l2.5 2.5L9 1" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        How to get started and what to expect
+      </li>
+    </ul>
+  </div>
+
+  <div class="cta-form">
+    <h3>Download the Catalog</h3>
+    <p>Instant access — no sales call required.</p>
+    <div class="form-trust" style="background:rgba(107,25,255,0.18); border-color:rgba(107,25,255,0.3); margin-bottom:20px;">
+      <div class="trust-stat">
+        <div class="trust-stat-num" style="color:#a78bfa;">600+</div>
+        <div class="trust-stat-label" style="color:rgba(255,255,255,0.5);">Enterprise<br>Clients</div>
+      </div>
+      <div class="trust-stat" style="border-color:rgba(107,25,255,0.3);">
+        <div class="trust-stat-num" style="color:#a78bfa;">1M+</div>
+        <div class="trust-stat-label" style="color:rgba(255,255,255,0.5);">Leaders<br>Trained</div>
+      </div>
+      <div class="trust-stat" style="border-color:rgba(107,25,255,0.3);">
+        <div class="trust-stat-num" style="color:#a78bfa;">96%</div>
+        <div class="trust-stat-label" style="color:rgba(255,255,255,0.5);">Learner<br>Satisfaction</div>
+      </div>
+    </div>
+    <form id="cta-form" onsubmit="submitForm(event)">
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" placeholder="Jane Smith" required />
+      </div>
+      <div class="form-row">
+        <label>Work Email</label>
+        <input type="email" placeholder="jane@company.com" required />
+      </div>
+      <div class="form-row">
+        <label>Company</label>
+        <input type="text" placeholder="Acme Corp" required />
+      </div>
+      <div class="form-row">
+        <label>Your Role</label>
+        <select required>
+          <option value="" disabled selected>Select role</option>
+          <option>Chief Learning Officer</option>
+          <option>VP / Director of L&D</option>
+          <option>HR Business Partner</option>
+          <option>Talent Development Manager</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit">Download Free Catalog →</button>
+      <p class="form-note">No spam. Unsubscribe any time.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer>
+  <img
+    src="https://www.infoprolearning.com/wp-content/themes/ipl/assets/images-new/2024/logo-new.svg"
+    alt="Infopro Learning"
+    onerror="this.style.display='none'"
+  />
+  <p>© 2026 Infopro Learning. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Contact Us</a>
+  </div>
+</footer>
+
+<script>
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Opening…';
+    btn.disabled = true;
+    setTimeout(() => {
+      window.open(
+        'https://2854653.fs1.hubspotusercontent-na1.net/hubfs/2854653/Leadership%20Catalog%202026%20Infopro%20Learning.pdf',
+        '_blank'
+      );
+      btn.textContent = '✓ Catalog Opened';
+      btn.style.background = '#16a34a';
+    }, 350);
+  }
+</script>
+
+</body>
+</html>
